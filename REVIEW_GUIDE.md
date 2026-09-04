@@ -23,16 +23,23 @@ This repository is intended to show:
 
 1. `README.md`
 2. `AI_WORKFLOW_RULES.md`
-3. `principles/05-evidence-over-assumption.md`
-4. `principles/07-stop-and-ask-dont-fabricate.md`
-5. `principles/11-environment-portability.md`
-6. `principles/12-artifacts-are-hypotheses.md`
-7. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
-8. `patterns/agent-review-boundaries-template.md`
-9. `patterns/eval-checklist.md`
-10. `operations/branch-promotion-rule.md`
+3. `patterns/sprint-task-spec-template.md`
+4. `principles/05-evidence-over-assumption.md`
+5. `principles/07-stop-and-ask-dont-fabricate.md`
+6. `principles/11-environment-portability.md`
+7. `principles/12-artifacts-are-hypotheses.md`
+8. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
+9. `patterns/agent-review-boundaries-template.md`
+10. `patterns/eval-checklist.md`
+11. `operations/branch-promotion-rule.md`
 
 ## Why these files matter
+
+### AI workflow rules
+Shows there is an explicit rule set for how AI is used, constrained, and verified.
+
+### Sprint task spec template
+Shows a real agent workflow artifact: scoped work, stop conditions, review boundaries, and verification requirements written down before execution.
 
 ### Evidence over assumption
 Shows a bias toward runtime truth over code that merely looks correct.

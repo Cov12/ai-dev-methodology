@@ -6,6 +6,10 @@ This repo collects the principles, templates, and operating rules I use to keep 
 
 The point is not to present a universal process. The point is to make the underlying engineering judgment explicit enough to reuse.
 
+## Why this matters for AI-native engineering teams
+
+AI makes it easier to generate code quickly. It also makes it easier to create plausible mistakes across multi-file changes, refactors, debugging passes, test generation, and production verification. The methodology here is meant to keep agentic work useful without treating speed or fluency as proof.
+
 ## What this repo contains
 
 - **Principles** — durable rules for how to think about specs, verification, risk, and decision-making
@@ -41,14 +45,15 @@ If you only spend 10 minutes here, read these first:
 
 1. `REVIEW_GUIDE.md`
 2. `AI_WORKFLOW_RULES.md`
-3. `principles/05-evidence-over-assumption.md`
-4. `principles/07-stop-and-ask-dont-fabricate.md`
-5. `principles/11-environment-portability.md`
-6. `principles/12-artifacts-are-hypotheses.md`
-7. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
-8. `patterns/agent-review-boundaries-template.md`
-9. `patterns/eval-checklist.md`
-10. `operations/branch-promotion-rule.md`
+3. `patterns/sprint-task-spec-template.md`
+4. `principles/05-evidence-over-assumption.md`
+5. `principles/07-stop-and-ask-dont-fabricate.md`
+6. `principles/11-environment-portability.md`
+7. `principles/12-artifacts-are-hypotheses.md`
+8. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
+9. `patterns/agent-review-boundaries-template.md`
+10. `patterns/eval-checklist.md`
+11. `operations/branch-promotion-rule.md`
 
 ## Who this is for
 

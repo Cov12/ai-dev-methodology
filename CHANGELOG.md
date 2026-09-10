@@ -1,5 +1,16 @@
 # Methodology Changelog
 
+## v0.1.3 — 2026-09-10 — Stale-board sweep + tracker/branch/schema corollaries
+
+Extracted from a backlog-readiness sweep where most still-open, priority-tagged issues turned out already shipped.
+
+- `patterns/stale-board-sweep.md` (new): parallel read-only recon agents returning DONE/PARTIAL/OPEN with `file:line` evidence, reconciled against producer/consumer apps before any build.
+- `principles/05` corollary: the issue tracker is an assumption, not evidence — an open issue is not proof of open work; verify the deployed code.
+- `operations/branch-promotion-rule.md` corollary: the default branch must BE the deployed line, or state-checks lie, auto-close stops firing, and new branches inherit stale bases.
+- `principles/11` corollary: the schema-apply mechanism is part of the environment contract — push-apply refuses data loss, so keep changes additive and plan destructive ones deliberately.
+
+---
+
 ## v0.1.2 — 2026-09-10 — Browser smoke promotion pattern
 
 Added `patterns/browser-smoke-promotion.md`, a public-safe pattern for turning UI verification gaps into reusable browser smoke infrastructure.

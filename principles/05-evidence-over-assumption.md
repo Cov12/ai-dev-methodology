@@ -25,3 +25,37 @@ The methodology caught it because the work was verified against the real runtime
 ## How to apply
 
 For any sprint that touches trust-boundary code, manual smoke testing is a deliverable, not an afterthought. Budget time for it in the sprint plan. Write the smoke plan before implementation begins. Run it after implementation completes.
+
+## Corollary: the issue tracker is an assumption, not evidence
+
+Principle 05 is usually applied forward — don't trust that code works because
+the tests pass. It applies just as hard in reverse: **don't trust that work is
+open because the issue is open.**
+
+An issue tracker records intent at the moment it was written. It does not track
+the code. Work ships, the branch merges, and the issue stays open because
+nobody closed it — especially when a PR merges to a non-default branch (see
+`operations/branch-promotion-rule.md`), so no `Closes #N` ever fires.
+
+The failure mode: you pick up an open, priority-tagged issue, read its "current
+state" section, and plan a build against a snapshot that is weeks or months
+stale. The work may already be done, partly done, or done differently than the
+issue describes.
+
+### Where this came from
+
+A backlog-readiness sweep found that a majority of the still-open,
+priority-tagged issues had already shipped; the tracker had simply not caught
+up. Each looked like real work until the code was read on the deployed branch.
+
+### How to apply
+
+Before treating any tracked issue as work:
+
+1. Verify current state against the **deployed** ref — not the issue body, and
+   not the default branch if it isn't the deployed line.
+2. Classify DONE / PARTIAL / OPEN with `file:line` evidence.
+3. Only then scope. If it's DONE, close it (citing the evidence) rather than
+   rebuilding it.
+
+For a whole backlog, batch this — see `patterns/stale-board-sweep.md`.

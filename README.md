@@ -48,12 +48,13 @@ If you only spend 10 minutes here, read these first:
 3. `patterns/sprint-task-spec-template.md`
 4. `principles/05-evidence-over-assumption.md`
 5. `principles/07-stop-and-ask-dont-fabricate.md`
-6. `principles/11-environment-portability.md`
-7. `principles/12-artifacts-are-hypotheses.md`
-8. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
-9. `patterns/agent-review-boundaries-template.md`
-10. `patterns/eval-checklist.md`
-11. `operations/branch-promotion-rule.md`
+6. `patterns/browser-smoke-promotion.md`
+7. `principles/11-environment-portability.md`
+8. `principles/12-artifacts-are-hypotheses.md`
+9. `principles/13-a-spec-that-cannot-fail-will-not-be-checked.md`
+10. `patterns/agent-review-boundaries-template.md`
+11. `patterns/eval-checklist.md`
+12. `operations/branch-promotion-rule.md`
 
 ## Who this is for
 

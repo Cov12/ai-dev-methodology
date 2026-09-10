@@ -1,5 +1,13 @@
 # Methodology Changelog
 
+## v0.1.2 — 2026-09-10 — Browser smoke promotion pattern
+
+Added `patterns/browser-smoke-promotion.md`, a public-safe pattern for turning UI verification gaps into reusable browser smoke infrastructure.
+
+This captures a recurring AI-assisted engineering lesson: unit tests, adapter tests, and direct API checks are valuable, but they do not prove browser-visible behavior. The new pattern covers stable package-script entrypoints, deterministic mocks/seeds, `data-testid` selectors, negative controls, reload/rehydration assertions, service-worker/CORS/onboarding-modal hardening, and failure artifacts.
+
+---
+
 ## v0.1.1 — 2026-07-05 — Environment portability principle
 
 Added Principle 11: Environment portability.

@@ -14,7 +14,7 @@ AI makes it easier to generate code quickly. It also makes it easier to create p
 
 - **Principles** — durable rules for how to think about specs, verification, risk, and decision-making
 - **Patterns** — reusable templates for ADRs, sprint specs, handoffs, retros, evals, and review boundaries
-- **Operations** — practical workflow rules for implementation, verification, release readiness, and session hygiene
+- **Operations** — practical workflow rules for implementation, verification, release readiness, session hygiene, and deploy runbooks (shared-server deploys, human-run command blocks, workflow-engine publish checklists)
 
 ## Core stance
 

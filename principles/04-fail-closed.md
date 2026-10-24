@@ -27,3 +27,22 @@ Use fail-closed defaults for:
 - background job error handling
 - geographic and demographic restrictions
 - anything involving consent or attestation
+
+## Corollary: required secrets
+
+Fail closed applies at startup too. An entrypoint exits with a `FATAL`
+message when a required secret is empty, rather than starting in a degraded
+state that looks healthy until the first real request.
+
+In compose files, reference secrets as `${VAR:-}` so a service that doesn't
+use a given secret can still start without it. Each service then fails
+closed only on the secrets it actually needs, instead of every service
+demanding every secret. See `operations/shared-server-deploy.md`.
+
+### Files referenced (corollary)
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| `entrypoint.sh` (placeholder for each container's startup script) | Runs when the container starts. | Change when a service gains or loses a required secret. | Exit with a `FATAL` message if a required secret is empty, instead of starting degraded. |
+| `docker-compose.yml` | Base compose file defining the services. | Change when adding or reconfiguring a service. | Reference secrets as `${VAR:-}` so services that don't use a secret still start. |
+| `operations/shared-server-deploy.md` | Runbook for deploying containers onto a server that already hosts other services and runs its own reverse proxy. | Read before any deploy to a shared host. | Loopback-only override, reuse the existing vhost, exact compose command, back up and tag, ownership boundary. |

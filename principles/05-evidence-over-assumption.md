@@ -59,3 +59,37 @@ Before treating any tracked issue as work:
    rebuilding it.
 
 For a whole backlog, batch this — see `patterns/stale-board-sweep.md`.
+
+## Corollary: verify in the system of record, not the caller's response
+
+A successful-looking response on the caller's side is not proof that the
+target did the work. Confirm the effect where the target records it: for a
+workflow engine, a **new run under Executions**; for a database, the row
+exists; for a queue, the message was consumed.
+
+### Where this came from
+
+A webhook test was reported as passing because the HTTP call returned
+something plausible. The workflow it was meant to trigger had never been
+stored in the engine's database; it was absent from every backup across the
+period. The "pass" was a false positive, and it held until someone looked
+for the execution record that should have existed.
+
+### How to apply
+
+1. Before calling a test passed, find the new execution, row, or log entry
+   it should have created.
+2. Check that the thing under test exists in the target's store (e.g. the
+   workflow is stored and published, not just present in a file).
+3. Cross-check backups: if the object never appears in any backup, it was
+   never deployed.
+4. When the caller hides the target's real error, probe from the caller's
+   side of the network (`operations/probe-from-calling-container.md`).
+
+### Files referenced (corollary)
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| n8n Executions list (n8n UI, not a file) | n8n's record of each workflow run. | The proof step after any test request. | Look for a **new** run of the workflow under test. |
+| Backups (database dumps or equivalent) | Pre-deploy snapshots. | Take one before every deploy; restore one on rollback. | Also evidence: an object missing from every backup was never deployed. |
+| `operations/probe-from-calling-container.md` | How to debug a failing call between two containers. | When service A's call to service B fails or A shows only a generic error. | Exec into A, call B exactly as A does, print status and body, reference secrets as env vars. |

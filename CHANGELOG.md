@@ -1,5 +1,23 @@
 # Methodology Changelog
 
+## v0.1.4 — 2026-10-24 — Deploy runbooks + workflow-engine verification lessons
+
+Extracted from deploying a containerized web service and a self-hosted workflow engine onto a shared server, where an early webhook "test passed" turned out to be a false positive.
+
+- `principles/04` corollary: required secrets fail closed at startup (`FATAL` on empty); compose uses `${VAR:-}` so each service fails only on the secrets it needs.
+- `principles/05` corollary: verify in the system of record, not the caller's response — find the new execution/row, and cross-check backups.
+- `operations/shared-server-deploy.md` (new): loopback-bound compose override, reuse the existing vhost, name the exact compose command, back up and tag before every deploy, respect the shared-server ownership boundary.
+- `operations/human-run-command-blocks.md` (new): single guarded, re-runnable copy-paste blocks when the agent can't reach the server; next step based on pasted output; no secrets in chat.
+- `operations/probe-from-calling-container.md` (new): probe service-to-service calls from inside the calling container to see the real status and error body.
+- `operations/n8n-import-publish-checklist.md` (new): n8n 2.x import → Header Auth credential → Save → Publish again → restart → verify under Executions, with common symptoms.
+- `operations/mirrored-upstream-workflows.md` (new): disable upstream CI that depends on the upstream's private GitHub App after mirroring.
+- `patterns/shared-platform-repo-structure.md` (new): one shared codebase, a deploy folder per deployment, a separate content repo per deployment.
+- `patterns/webhook-side-effects-privacy.md` (new): side effects never change the user-facing response; no visitor IP downstream.
+- `README.md`: operations description updated.
+- Each new doc and both corollaries end with a `Files referenced` table (what each file is, when to use or change it, key contents and gotchas), using placeholder file names.
+
+---
+
 ## v0.1.3 — 2026-09-10 — Stale-board sweep + tracker/branch/schema corollaries
 
 Extracted from a backlog-readiness sweep where most still-open, priority-tagged issues turned out already shipped.

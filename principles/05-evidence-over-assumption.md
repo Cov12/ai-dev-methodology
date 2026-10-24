@@ -59,3 +59,29 @@ Before treating any tracked issue as work:
    rebuilding it.
 
 For a whole backlog, batch this — see `patterns/stale-board-sweep.md`.
+
+## Corollary: verify in the system of record, not the caller's response
+
+A successful-looking response on the caller's side is not proof that the
+target did the work. Confirm the effect where the target records it: for a
+workflow engine, a **new run under Executions**; for a database, the row
+exists; for a queue, the message was consumed.
+
+### Where this came from
+
+A webhook test was reported as passing because the HTTP call returned
+something plausible. The workflow it was meant to trigger had never been
+stored in the engine's database; it was absent from every backup across the
+period. The "pass" was a false positive, and it held until someone looked
+for the execution record that should have existed.
+
+### How to apply
+
+1. Before calling a test passed, find the new execution, row, or log entry
+   it should have created.
+2. Check that the thing under test exists in the target's store (e.g. the
+   workflow is stored and published, not just present in a file).
+3. Cross-check backups: if the object never appears in any backup, it was
+   never deployed.
+4. When the caller hides the target's real error, probe from the caller's
+   side of the network (`operations/probe-from-calling-container.md`).

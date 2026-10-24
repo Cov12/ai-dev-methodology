@@ -26,3 +26,11 @@ duplicate side effects. Forwarding visitor IPs widens the privacy surface
 for no product benefit.
 
 Related: `principles/02-trust-boundaries.md`, `principles/04-fail-closed.md`.
+
+## Files referenced
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| User-facing endpoint handler (placeholder, e.g. a contact-form service) | Code that answers the visitor and then fires side effects. | Change when forwarded fields or the response contract change. | Response must not depend on side-effect results; forward only needed fields, no visitor IP. |
+| `principles/02-trust-boundaries.md` | Principle: trust-boundary code needs explicit human review. | When reviewing code that accepts inbound requests or forwards data. | A webhook receiver and its downstream calls sit on a trust boundary. |
+| `principles/04-fail-closed.md` | Principle: refuse by default on uncertainty or failure. | When designing auth, error handling, secrets or startup checks. | Corollary "required secrets": entrypoints exit `FATAL` on an empty required secret; compose uses `${VAR:-}`. |

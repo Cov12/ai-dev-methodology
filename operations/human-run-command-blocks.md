@@ -24,3 +24,11 @@ than expected output.
   (`principles/05-evidence-over-assumption.md`).
 - Never ask the human to paste secret values back into the chat. Print
   whether a secret is set (e.g. its length), not what it is.
+
+## Files referenced
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| `file` in the guard examples (typically `.env` or a config file) | The file a block edits. | Any block that appends or substitutes config. | `sed -i.bak` leaves a `.bak` copy for undo; the `grep -q` guard makes a re-run a no-op. |
+| `.env` / `.env.example` | `.env` holds the deployment's env values, secrets included, and is never committed; `.env.example` is the committed names-only template. | Edit `.env` on the server when a value changes; edit `.env.example` when a variable is added. | Refer to variables by name only. Add keys with a guarded `grep -q '^KEY=' .env \|\| echo ...`. |
+| `principles/05-evidence-over-assumption.md` | Principle: end-to-end evidence beats "looks right". | When deciding whether a step or test actually worked. | Corollary "verify in the system of record": find the new execution/row, check the object is stored, cross-check backups. |

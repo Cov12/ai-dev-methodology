@@ -32,3 +32,14 @@ After importing:
 
 When the caller is another container, probe from inside it to see these
 errors directly (`operations/probe-from-calling-container.md`).
+
+## Files referenced
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| `workflows/<workflow-name>.json` (placeholder) | Exported n8n workflow definition, without credentials. | Import to deploy; re-export and commit after UI edits. | Import stores the workflow only: no credential attached, not published. |
+| `WEBHOOK_SECRET` (env var in `.env`) | Shared secret the caller sends and the Header Auth credential checks. | Set once; rotate by updating `.env` and the credential, then recreate the containers that read it. | Refer to it by name; never paste or echo the value. |
+| Header Auth credential (n8n UI, not a file) | Holds the webhook header the Webhook node checks. | Create after import; update when the secret rotates. | Header name e.g. `X-Webhook-Secret`. Missing from the published version → HTTP 500 "No authentication data defined on node!". |
+| n8n Executions list (n8n UI, not a file) | n8n's record of each workflow run. | The proof step after any test request. | Look for a **new** run of the workflow under test. |
+| `principles/05-evidence-over-assumption.md` | Principle: end-to-end evidence beats "looks right". | When deciding whether a step or test actually worked. | Corollary "verify in the system of record": find the new execution/row, check the object is stored, cross-check backups. |
+| `operations/probe-from-calling-container.md` | How to debug a failing call between two containers. | When service A's call to service B fails or A shows only a generic error. | Exec into A, call B exactly as A does, print status and body, reference secrets as env vars. |

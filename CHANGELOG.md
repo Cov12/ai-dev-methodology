@@ -14,6 +14,7 @@ Extracted from deploying a containerized web service and a self-hosted workflow 
 - `patterns/shared-platform-repo-structure.md` (new): one shared codebase, a deploy folder per deployment, a separate content repo per deployment.
 - `patterns/webhook-side-effects-privacy.md` (new): side effects never change the user-facing response; no visitor IP downstream.
 - `README.md`: operations description updated.
+- Each new doc and both corollaries end with a `Files referenced` table (what each file is, when to use or change it, key contents and gotchas), using placeholder file names.
 
 ---
 

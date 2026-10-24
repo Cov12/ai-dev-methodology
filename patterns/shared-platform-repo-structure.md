@@ -21,3 +21,13 @@ example, workflow definitions).
 
 Platform fixes land once. Config and content can't leak across
 deployments. Each layer has its own history, review, and rollback.
+
+## Files referenced
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| `custom/` (placeholder for the dedicated custom-work directory) | Holds all your changes to a mirrored upstream codebase. | Put every customization here instead of editing upstream files. | Keeps upstream syncs conflict-free. |
+| `deploy/<deployment>/` (placeholder) | One folder per deployment: compose files, overrides, env templates, deploy doc. | Change when that deployment changes. | Holds `.env.example`, never `.env` values. |
+| `<deployment>-workflows` repo (placeholder) | The deployment-specific content (e.g. workflow JSON), versioned separately. | Commit after exporting changed content. | Never commit credentials, `.env` or encryption keys. |
+| `operations/mirrored-upstream-workflows.md` | How to handle upstream CI after forking or mirroring. | Right after mirroring and after each upstream sync. | Disable workflows that need the upstream's private GitHub App or secrets; record what was disabled. |
+| `operations/shared-server-deploy.md` | Runbook for deploying containers onto a server that already hosts other services and runs its own reverse proxy. | Read before any deploy to a shared host. | Loopback-only override, reuse the existing vhost, exact compose command, back up and tag, ownership boundary. |

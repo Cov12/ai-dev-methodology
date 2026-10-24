@@ -20,3 +20,10 @@ external curl or A's own sanitized user-facing error can hide.
   container (e.g. `"$WEBHOOK_SECRET"`); never echo or paste the value.
 - Then confirm the effect in B's own records
   (`principles/05`, corollary: verify in the system of record).
+
+## Files referenced
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| Caller container env (e.g. `WEBHOOK_SECRET`, target URL variable) | Config already present inside service A. | Reuse it when probing so the request matches A's. | Reference as `"$WEBHOOK_SECRET"`; never echo it. |
+| `principles/05-evidence-over-assumption.md` | Principle: end-to-end evidence beats "looks right". | When deciding whether a step or test actually worked. | Corollary "verify in the system of record": find the new execution/row, check the object is stored, cross-check backups. |

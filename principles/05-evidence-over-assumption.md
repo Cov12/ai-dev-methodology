@@ -85,3 +85,11 @@ for the execution record that should have existed.
    never deployed.
 4. When the caller hides the target's real error, probe from the caller's
    side of the network (`operations/probe-from-calling-container.md`).
+
+### Files referenced (corollary)
+
+| File | What it is / does | When to use or change it | Key contents and gotchas |
+|---|---|---|---|
+| n8n Executions list (n8n UI, not a file) | n8n's record of each workflow run. | The proof step after any test request. | Look for a **new** run of the workflow under test. |
+| Backups (database dumps or equivalent) | Pre-deploy snapshots. | Take one before every deploy; restore one on rollback. | Also evidence: an object missing from every backup was never deployed. |
+| `operations/probe-from-calling-container.md` | How to debug a failing call between two containers. | When service A's call to service B fails or A shows only a generic error. | Exec into A, call B exactly as A does, print status and body, reference secrets as env vars. |
